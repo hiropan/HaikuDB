@@ -34,7 +34,8 @@ struct HaikuEditorView: View {
         _poem = State(initialValue: editingHaiku.poem)
         _theme = State(initialValue: editingHaiku.theme)
 //        _writer = State(initialValue: editingHaiku.writer.isEmpty ? UserDefaults.standard.string(forKey: "defaultWriter") ?? "" : editingHaiku.writer)
-        _writer = State(initialValue: editingHaiku.writer)
+//        _writer = State(initialValue: editingHaiku.writer)
+        _writer = State(initialValue: "")
         _selectedContestID = State(initialValue: editingHaiku.contestID)
     }
     
@@ -146,14 +147,36 @@ struct HaikuEditorView: View {
         .onAppear {
             if !hasLoaded {
                 if let haiku = editingHaiku {
-
+                    poem = haiku.poem
+//                    writer = haiku.writer
+                    writer = isNewHaiku ? defaultWriter : haiku.writer
+                    theme = haiku.theme
+                    date = haiku.date
+                    selectedContestID = haiku.contestID
+                    note = haiku.note
+                    isNoteExpanded = !haiku.note.isEmpty
                 } else {
-                    writer = defaultWriter
+                    writer = defaultWriter // <- now defaultWriter from @AppStorage is available
                 }
+
+                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
                 hasLoaded = true
             }
-                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
-            }
+        }
+//        .onAppear {
+//            if !hasLoaded {
+//                if let haiku = editingHaiku {
+//
+//                } else {
+//                    writer = defaultWriter
+//                }
+////                if editingHaiku == nil {
+////                    writer = defaultWriter
+////                }
+//                hasLoaded = true
+//            }
+//                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
+//        }
     }
     
     func saveHaikus() {

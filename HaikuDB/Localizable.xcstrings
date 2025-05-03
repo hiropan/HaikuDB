@@ -151,6 +151,9 @@
         }
       }
     },
+    "Default Writer's Name" : {
+
+    },
     "Default Writer’s Name" : {
       "localizations" : {
         "ja" : {
@@ -162,6 +165,7 @@
       }
     },
     "Defaults" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
