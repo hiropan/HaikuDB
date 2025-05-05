@@ -71,6 +71,9 @@
         }
       }
     },
+    "Compose Haiku" : {
+
+    },
     "Contest" : {
       "localizations" : {
         "ja" : {
@@ -235,6 +238,12 @@
         }
       }
     },
+    "Lower phrase" : {
+
+    },
+    "Middle phrase" : {
+
+    },
     "My Haikus" : {
       "localizations" : {
         "ja" : {
@@ -266,6 +275,7 @@
       }
     },
     "Poem" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -274,6 +284,9 @@
           }
         }
       }
+    },
+    "Preview" : {
+
     },
     "Save" : {
       "localizations" : {
@@ -374,6 +387,9 @@
           }
         }
       }
+    },
+    "Upper phrase" : {
+
     },
     "Writer" : {
       "localizations" : {

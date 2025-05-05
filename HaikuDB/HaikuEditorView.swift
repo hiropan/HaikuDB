@@ -17,39 +17,54 @@ struct HaikuEditorView: View {
     var editingHaiku: Haiku? = nil
 
     @State private var poem = ""
+    @State private var upperPhrase = ""
+    @State private var middlePhrase = ""
+    @State private var lowerPhrase = ""
     @State private var theme = ""
     @State private var date = Date()
-    @State private var writer: String
-//    @State private var writer = ""
+    @State private var writer = ""
     @State private var selectedContestID: UUID?
     @State private var hasLoaded = false
     @State private var note = ""
     @State private var isNoteExpanded = false
     @State private var themeOptions: [String] = []
-    
-    init(haikus: Binding<[Haiku]>, contests: [Contest], editingHaiku: Haiku) {
-        self._haikus = haikus
-        self.contests = contests
-        self.editingHaiku = editingHaiku
-        _poem = State(initialValue: editingHaiku.poem)
-        _theme = State(initialValue: editingHaiku.theme)
-//        _writer = State(initialValue: editingHaiku.writer.isEmpty ? UserDefaults.standard.string(forKey: "defaultWriter") ?? "" : editingHaiku.writer)
-//        _writer = State(initialValue: editingHaiku.writer)
-        _writer = State(initialValue: "")
-        _selectedContestID = State(initialValue: editingHaiku.contestID)
-    }
-    
+      
     var isNewHaiku: Bool {
         guard let editingHaiku else { return true }
         return !haikus.contains(where: { $0.id == editingHaiku.id })
+    }
+    
+    var isPoemValid: Bool {
+        !poem.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Poem")) {
-                    TextEditor(text: $poem)
-                        .frame(height: 100)
+//                Section(header: Text("Poem")) {
+//                    TextField("Poem", text: $poem)
+//                }
+                
+                Section(header: Text("Compose Haiku")) {
+                    TextField("Upper phrase", text: $upperPhrase)
+                        .textInputAutocapitalization(.sentences)
+                        .disableAutocorrection(true)
+
+                    TextField("Middle phrase", text: $middlePhrase)
+                        .textInputAutocapitalization(.sentences)
+                        .disableAutocorrection(true)
+
+                    TextField("Lower phrase", text: $lowerPhrase)
+                        .textInputAutocapitalization(.sentences)
+                        .disableAutocorrection(true)
+                }
+                
+                Section(header: Text("Preview")) {
+                    Text([upperPhrase, middlePhrase, lowerPhrase]
+                        .filter { !$0.isEmpty }
+                        .joined(separator: "\n"))
+                        .font(.system(.body, design: .serif))
+                        .padding(.vertical)
                 }
 
                 Section(header: Text("Details")) {
@@ -135,6 +150,7 @@ struct HaikuEditorView: View {
                         saveHaikus()
                         dismiss()
                     }
+                    .disabled(!isPoemValid)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
@@ -146,22 +162,35 @@ struct HaikuEditorView: View {
         }
         .onAppear {
             if !hasLoaded {
-                if let haiku = editingHaiku {
-                    poem = haiku.poem
-//                    writer = haiku.writer
-                    writer = isNewHaiku ? defaultWriter : haiku.writer
-                    theme = haiku.theme
-                    date = haiku.date
-                    selectedContestID = haiku.contestID
-                    note = haiku.note
-                    isNoteExpanded = !haiku.note.isEmpty
-                } else {
-                    writer = defaultWriter // <- now defaultWriter from @AppStorage is available
-                }
+                let haiku = editingHaiku
+                
+                poem = haiku?.poem ?? ""
+                writer = haiku?.writer.isEmpty == false ? haiku!.writer : defaultWriter
+                theme = haiku?.theme ?? ""
+                date = haiku?.date ?? Date()
+                selectedContestID = haiku?.contestID
+                note = haiku?.note ?? ""
+                isNoteExpanded = !(haiku?.note.isEmpty ?? true)
 
                 themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
                 hasLoaded = true
             }
+//            if !hasLoaded {
+//                if let haiku = editingHaiku {
+//                    poem = haiku.poem
+//                    writer = isNewHaiku ? defaultWriter : haiku.writer
+//                    theme = haiku.theme
+//                    date = haiku.date
+//                    selectedContestID = haiku.contestID
+//                    note = haiku.note
+//                    isNoteExpanded = !haiku.note.isEmpty
+//                } else {
+//                    writer = defaultWriter // <- now defaultWriter from @AppStorage is available
+//                }
+//
+//                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
+//                hasLoaded = true
+//            }
         }
 //        .onAppear {
 //            if !hasLoaded {
