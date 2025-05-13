@@ -16,7 +16,7 @@ struct HaikuEditorView: View {
     var contests: [Contest]
     var editingHaiku: Haiku? = nil
 
-    @State private var poem = ""
+//    @State private var poem = ""
     @State private var upperPhrase = ""
     @State private var middlePhrase = ""
     @State private var lowerPhrase = ""
@@ -34,10 +34,17 @@ struct HaikuEditorView: View {
         return !haikus.contains(where: { $0.id == editingHaiku.id })
     }
     
-    var isPoemValid: Bool {
-        !poem.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
+//    var isPoemValid: Bool {
+//        !poem.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+//    }
 
+    var isPoemValid: Bool {
+        let trimmedUpper = upperPhrase.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedMiddle = middlePhrase.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedLower = lowerPhrase.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !(trimmedUpper.isEmpty && trimmedMiddle.isEmpty && trimmedLower.isEmpty)
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -133,7 +140,10 @@ struct HaikuEditorView: View {
                     Button("Save") {
                         let updatedHaiku = Haiku(
                             id: editingHaiku?.id ?? UUID(), // Use the same ID if editing
-                            poem: poem,
+                            upperPhrase: upperPhrase,
+                            middlePhrase: middlePhrase,
+                            lowerPhrase: lowerPhrase,
+//                            poem: poem,
                             theme: theme,
                             date: date,
                             writer: writer,
@@ -163,8 +173,10 @@ struct HaikuEditorView: View {
         .onAppear {
             if !hasLoaded {
                 let haiku = editingHaiku
-                
-                poem = haiku?.poem ?? ""
+                upperPhrase = haiku?.upperPhrase ?? ""
+                middlePhrase = haiku?.middlePhrase ?? ""
+                lowerPhrase = haiku?.lowerPhrase ?? ""
+//                poem = haiku?.poem ?? ""
                 writer = haiku?.writer.isEmpty == false ? haiku!.writer : defaultWriter
                 theme = haiku?.theme ?? ""
                 date = haiku?.date ?? Date()

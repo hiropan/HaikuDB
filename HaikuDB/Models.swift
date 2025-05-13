@@ -16,7 +16,10 @@ struct Contest: Identifiable, Codable, Equatable {
 
 struct Haiku: Identifiable, Codable, Equatable {
     var id = UUID()
-    var poem: String
+    var upperPhrase: String
+    var middlePhrase: String
+    var lowerPhrase: String
+//    var poem: String
     var theme: String
     var date: Date
     var writer: String

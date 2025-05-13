@@ -95,6 +95,7 @@
       }
     },
     "Contest: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -359,6 +360,7 @@
       }
     },
     "Theme: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {

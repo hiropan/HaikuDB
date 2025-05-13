@@ -18,7 +18,9 @@ struct HaikuListView: View {
             return haikus
         } else {
             return haikus.filter {
-                $0.poem.localizedCaseInsensitiveContains(searchText) ||
+                $0.upperPhrase.localizedCaseInsensitiveContains(searchText) ||
+                $0.middlePhrase.localizedCaseInsensitiveContains(searchText) ||
+                $0.lowerPhrase.localizedCaseInsensitiveContains(searchText) ||
                 $0.writer.localizedCaseInsensitiveContains(searchText) ||
                 $0.theme.localizedCaseInsensitiveContains(searchText)
             }
@@ -44,7 +46,10 @@ struct HaikuListView: View {
                     // Create a new empty haiku for creation
                     haikuToEdit = Haiku(
                         id: UUID(),
-                        poem: "",
+                        upperPhrase: "",
+                        middlePhrase: "",
+                        lowerPhrase: "",
+//                        poem: "",
                         theme: "",
                         date: Date(),
 //                        writer: UserDefaults.standard.string(forKey: "defaultWriter") ?? "",
@@ -105,17 +110,17 @@ struct HaikuRowView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(haiku.poem)
+            Text(haiku.upperPhrase + " " + haiku.middlePhrase + " " + haiku.lowerPhrase)
                 .font(.headline)
 
-            Text("Theme: \(haiku.theme)")
-                .font(.subheadline)
-
-            if let contest = contest {
-                Text("Contest: \(contest.title)")
-                    .font(.caption)
-                    .foregroundColor(.blue)
-            }
+//            Text("Theme: \(haiku.theme)")
+//                .font(.subheadline)
+//
+//            if let contest = contest {
+//                Text("Contest: \(contest.title)")
+//                    .font(.caption)
+//                    .foregroundColor(.blue)
+//            }
 
             Text("By: \(haiku.writer)")
                 .font(.caption)
