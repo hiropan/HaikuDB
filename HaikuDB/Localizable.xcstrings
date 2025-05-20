@@ -41,6 +41,16 @@
         }
       }
     },
+    "by %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者: %@"
+          }
+        }
+      }
+    },
     "By: %@" : {
       "localizations" : {
         "ja" : {
@@ -71,9 +81,6 @@
         }
       }
     },
-    "Compose Haiku" : {
-
-    },
     "Contest" : {
       "localizations" : {
         "ja" : {
@@ -90,17 +97,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コンテストのタイトル"
-          }
-        }
-      }
-    },
-    "Contest: %@" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contest: %@"
           }
         }
       }
@@ -156,7 +152,14 @@
       }
     },
     "Default Writer's Name" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デフォルト俳号"
+          }
+        }
+      }
     },
     "Default Writer’s Name" : {
       "localizations" : {
@@ -164,17 +167,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "俳号"
-          }
-        }
-      }
-    },
-    "Defaults" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "デフォルト"
           }
         }
       }
@@ -229,6 +221,9 @@
         }
       }
     },
+    "Haiku" : {
+
+    },
     "Haikus" : {
       "localizations" : {
         "ja" : {
@@ -240,17 +235,31 @@
       }
     },
     "Lower phrase" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下の句"
+          }
+        }
+      }
     },
     "Middle phrase" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中の句"
+          }
+        }
+      }
     },
     "My Haikus" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "俳句"
+            "value" : "マイ俳句"
           }
         }
       }
@@ -274,20 +283,6 @@
           }
         }
       }
-    },
-    "Poem" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "短歌"
-          }
-        }
-      }
-    },
-    "Preview" : {
-
     },
     "Save" : {
       "localizations" : {
@@ -349,18 +344,17 @@
         }
       }
     },
-    "Theme" : {
+    "Submitted Haikus" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "テーマ"
+            "value" : "投句済み俳句"
           }
         }
       }
     },
-    "Theme: %@" : {
-      "extractionState" : "stale",
+    "Theme" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -391,7 +385,14 @@
       }
     },
     "Upper phrase" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上の句"
+          }
+        }
+      }
     },
     "Writer" : {
       "localizations" : {

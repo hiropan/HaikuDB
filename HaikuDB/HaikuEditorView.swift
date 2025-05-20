@@ -52,7 +52,7 @@ struct HaikuEditorView: View {
 //                    TextField("Poem", text: $poem)
 //                }
                 
-                Section(header: Text("Compose Haiku")) {
+                Section(header: Text("Haiku")) {
                     TextField("Upper phrase", text: $upperPhrase)
                         .textInputAutocapitalization(.sentences)
                         .disableAutocorrection(true)
@@ -64,15 +64,22 @@ struct HaikuEditorView: View {
                     TextField("Lower phrase", text: $lowerPhrase)
                         .textInputAutocapitalization(.sentences)
                         .disableAutocorrection(true)
-                }
-                
-                Section(header: Text("Preview")) {
+                    
                     Text([upperPhrase, middlePhrase, lowerPhrase]
                         .filter { !$0.isEmpty }
                         .joined(separator: "\n"))
-                        .font(.system(.body, design: .serif))
-                        .padding(.vertical)
+                        .foregroundColor(.secondary)
+//                        .font(.system(.body, design: .serif))
+//                        .padding(.vertical)
                 }
+                
+//                Section(header: Text("Preview")) {
+//                    Text([upperPhrase, middlePhrase, lowerPhrase]
+//                        .filter { !$0.isEmpty }
+//                        .joined(separator: "\n"))
+//                        .font(.system(.body, design: .serif))
+//                        .padding(.vertical)
+//                }
 
                 Section(header: Text("Details")) {
                     Picker("Theme", selection: $theme) {
@@ -143,7 +150,6 @@ struct HaikuEditorView: View {
                             upperPhrase: upperPhrase,
                             middlePhrase: middlePhrase,
                             lowerPhrase: lowerPhrase,
-//                            poem: poem,
                             theme: theme,
                             date: date,
                             writer: writer,
@@ -176,7 +182,6 @@ struct HaikuEditorView: View {
                 upperPhrase = haiku?.upperPhrase ?? ""
                 middlePhrase = haiku?.middlePhrase ?? ""
                 lowerPhrase = haiku?.lowerPhrase ?? ""
-//                poem = haiku?.poem ?? ""
                 writer = haiku?.writer.isEmpty == false ? haiku!.writer : defaultWriter
                 theme = haiku?.theme ?? ""
                 date = haiku?.date ?? Date()
@@ -187,37 +192,7 @@ struct HaikuEditorView: View {
                 themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
                 hasLoaded = true
             }
-//            if !hasLoaded {
-//                if let haiku = editingHaiku {
-//                    poem = haiku.poem
-//                    writer = isNewHaiku ? defaultWriter : haiku.writer
-//                    theme = haiku.theme
-//                    date = haiku.date
-//                    selectedContestID = haiku.contestID
-//                    note = haiku.note
-//                    isNoteExpanded = !haiku.note.isEmpty
-//                } else {
-//                    writer = defaultWriter // <- now defaultWriter from @AppStorage is available
-//                }
-//
-//                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
-//                hasLoaded = true
-//            }
         }
-//        .onAppear {
-//            if !hasLoaded {
-//                if let haiku = editingHaiku {
-//
-//                } else {
-//                    writer = defaultWriter
-//                }
-////                if editingHaiku == nil {
-////                    writer = defaultWriter
-////                }
-//                hasLoaded = true
-//            }
-//                themeOptions = UserDefaults.standard.stringArray(forKey: "themes") ?? []
-//        }
     }
     
     func saveHaikus() {

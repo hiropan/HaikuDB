@@ -12,7 +12,12 @@ struct ContestEditorView: View {
 
     @Binding var contests: [Contest]
     var editingContest: Contest?
-
+    var haikus: [Haiku]
+    var relatedHaikus: [Haiku] {
+        guard let contestID = editingContest?.id else { return [] }
+        return haikus.filter { $0.contestID == contestID }
+    }
+    
     @State private var title = ""
     @State private var startDate = Date()
     @State private var endDate = Date()
@@ -57,6 +62,19 @@ struct ContestEditorView: View {
                         TextEditor(text: $note)
                             .frame(height: 100)
                             .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
+                }
+                
+                Section (header: Text("Submitted Haikus")) {
+                    ForEach(relatedHaikus) { haiku in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(haiku.upperPhrase + " " + haiku.middlePhrase + " " + haiku.lowerPhrase)
+                                .font(.body)
+                            Text("by \(haiku.writer)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
             }

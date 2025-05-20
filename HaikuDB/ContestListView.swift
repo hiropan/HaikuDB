@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContestListView: View {
     @Binding var contests: [Contest]
-//    @State private var contests: [Contest] = []
     @State private var contestToEdit: Contest?
     @State private var searchText = ""
-
+    
+    var haikus: [Haiku]
     var filteredContests: [Contest] {
         if searchText.isEmpty {
             return contests
@@ -49,11 +49,13 @@ struct ContestListView: View {
             }) { contest in
                 ContestEditorView(
                     contests: $contests,
-                    editingContest: contest
+                    editingContest: contest,
+                    haikus: haikus
                 )
             }
             .onAppear {
                 loadContests()
+//                loadHaikus()
             }
             .onChange(of: contests) {
                 saveContests()

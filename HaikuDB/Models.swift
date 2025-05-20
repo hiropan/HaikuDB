@@ -19,7 +19,6 @@ struct Haiku: Identifiable, Codable, Equatable {
     var upperPhrase: String
     var middlePhrase: String
     var lowerPhrase: String
-//    var poem: String
     var theme: String
     var date: Date
     var writer: String

@@ -2,8 +2,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var contests: [Contest] = []
-    //追加
-//    @State private var themes: [Theme] = []
+    @State private var haikus: [Haiku] = []
     
     var body: some View {
         TabView {
@@ -12,7 +11,7 @@ struct MainTabView: View {
                     Label("Haikus", systemImage: "book")
                 }
 
-            ContestListView(contests: $contests)
+            ContestListView(contests: $contests, haikus: haikus)
                 .tabItem {
                     Label("Contests", systemImage: "trophy")
                 }
@@ -24,8 +23,10 @@ struct MainTabView: View {
         }
         .onAppear {
             loadContests()
+            loadHaikus()
         }
     }
+    
     func loadContests() {
         if let data = UserDefaults.standard.data(forKey: "savedContests"),
            let decoded = try? JSONDecoder().decode([Contest].self, from: data) {
@@ -33,11 +34,10 @@ struct MainTabView: View {
         }
     }
     
-    //
-//    func loadThems() {
-//        if let data = UserDefaults.standard.data(forKey: "savedThemes"),
-//           let decoded = try? JSONDecoder().decode([Theme].self, from: data) {
-//            themes = decoded
-//        }
-//    }
+    func loadHaikus() {
+        if let data = UserDefaults.standard.data(forKey: "savedHaikus"),
+           let decoded = try? JSONDecoder().decode([Haiku].self, from: data) {
+            haikus = decoded
+        }
+    }
 }

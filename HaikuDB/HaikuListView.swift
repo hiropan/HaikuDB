@@ -32,7 +32,7 @@ struct HaikuListView: View {
             List {
                 ForEach(filteredHaikus) { haiku in
                     HaikuRowView(haiku: haiku, contest: contest(for: haiku))
-                        .contentShape(Rectangle()) // makes the whole row tappable
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             haikuToEdit = haiku
                         }
@@ -43,16 +43,13 @@ struct HaikuListView: View {
             .searchable(text: $searchText, prompt: "Search haikus")
             .toolbar {
                 Button {
-                    // Create a new empty haiku for creation
                     haikuToEdit = Haiku(
                         id: UUID(),
                         upperPhrase: "",
                         middlePhrase: "",
                         lowerPhrase: "",
-//                        poem: "",
                         theme: "",
                         date: Date(),
-//                        writer: UserDefaults.standard.string(forKey: "defaultWriter") ?? "",
                         writer: "",
                         contestID: nil
                     )
@@ -112,16 +109,6 @@ struct HaikuRowView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text(haiku.upperPhrase + " " + haiku.middlePhrase + " " + haiku.lowerPhrase)
                 .font(.headline)
-
-//            Text("Theme: \(haiku.theme)")
-//                .font(.subheadline)
-//
-//            if let contest = contest {
-//                Text("Contest: \(contest.title)")
-//                    .font(.caption)
-//                    .foregroundColor(.blue)
-//            }
-
             Text("By: \(haiku.writer)")
                 .font(.caption)
                 .foregroundColor(.secondary)
