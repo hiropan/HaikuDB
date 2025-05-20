@@ -33,10 +33,6 @@ struct HaikuEditorView: View {
         guard let editingHaiku else { return true }
         return !haikus.contains(where: { $0.id == editingHaiku.id })
     }
-    
-//    var isPoemValid: Bool {
-//        !poem.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-//    }
 
     var isPoemValid: Bool {
         let trimmedUpper = upperPhrase.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -69,17 +65,8 @@ struct HaikuEditorView: View {
                         .filter { !$0.isEmpty }
                         .joined(separator: "\n"))
                         .foregroundColor(.secondary)
-//                        .font(.system(.body, design: .serif))
-//                        .padding(.vertical)
+
                 }
-                
-//                Section(header: Text("Preview")) {
-//                    Text([upperPhrase, middlePhrase, lowerPhrase]
-//                        .filter { !$0.isEmpty }
-//                        .joined(separator: "\n"))
-//                        .font(.system(.body, design: .serif))
-//                        .padding(.vertical)
-//                }
 
                 Section(header: Text("Details")) {
                     Picker("Theme", selection: $theme) {
@@ -97,10 +84,7 @@ struct HaikuEditorView: View {
                     }
 
                     DatePicker("Date", selection: $date, displayedComponents: .date)
-
-                }
-
-                Section(header: Text("Contest")) {
+                    
                     Picker("Contest", selection: $selectedContestID) {
                         Text("None").tag(UUID?.none)
                         ForEach(contests) { contest in

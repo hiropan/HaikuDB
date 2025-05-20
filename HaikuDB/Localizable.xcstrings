@@ -91,6 +91,16 @@
         }
       }
     },
+    "Contest Information" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コンテスト情報"
+          }
+        }
+      }
+    },
     "Contest Title" : {
       "localizations" : {
         "ja" : {
@@ -132,16 +142,6 @@
       }
     },
     "Date" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "日付"
-          }
-        }
-      }
-    },
-    "Dates" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -222,7 +222,14 @@
       }
     },
     "Haiku" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "俳句"
+          }
+        }
+      }
     },
     "Haikus" : {
       "localizations" : {
@@ -370,16 +377,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テーマ"
-          }
-        }
-      }
-    },
-    "Title" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイトル"
           }
         }
       }

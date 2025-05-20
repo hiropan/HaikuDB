@@ -33,13 +33,28 @@ struct ContestEditorView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Title")) {
+                Section(header: Text("Contest Information")) {
                     TextField("Contest Title", text: $title)
-                }
-
-                Section(header: Text("Dates")) {
                     DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
                     DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+                }
+
+//                Section(header: Text("Dates")) {
+//                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+//                    DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+//                }
+                
+                Section (header: Text("Submitted Haikus")) {
+                    ForEach(relatedHaikus) { haiku in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(haiku.upperPhrase + " " + haiku.middlePhrase + " " + haiku.lowerPhrase)
+                                .font(.body)
+                            Text("by \(haiku.writer)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                    }
                 }
                 
                 Section {
@@ -62,19 +77,6 @@ struct ContestEditorView: View {
                         TextEditor(text: $note)
                             .frame(height: 100)
                             .transition(.opacity.combined(with: .move(edge: .top)))
-                    }
-                }
-                
-                Section (header: Text("Submitted Haikus")) {
-                    ForEach(relatedHaikus) { haiku in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(haiku.upperPhrase + " " + haiku.middlePhrase + " " + haiku.lowerPhrase)
-                                .font(.body)
-                            Text("by \(haiku.writer)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.vertical, 4)
                     }
                 }
             }
