@@ -1,8 +1,16 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    @AppStorage("colourTheme") private var colourTheme: String = "Standard"
+    
     @State private var contests: [Contest] = []
     @State private var haikus: [Haiku] = []
+    
+    var theme: ThemeColours {
+        currentTheme(named: colourTheme)
+    }
     
     var body: some View {
         TabView {
@@ -21,6 +29,9 @@ struct MainTabView: View {
                     Label("Settings", systemImage: "gearshape")
                 }
         }
+        .background(theme.background)
+        .foregroundColor(theme.primary)
+        .accentColor(theme.accent)
         .onAppear {
             loadContests()
             loadHaikus()
@@ -39,5 +50,10 @@ struct MainTabView: View {
            let decoded = try? JSONDecoder().decode([Haiku].self, from: data) {
             haikus = decoded
         }
+    }
+    
+    func currentTheme(named name: String) -> ThemeColours {
+        let theme = allThemes.first { $0.name == name } ?? standardTheme
+        return colorScheme == .dark ? theme.darkColours : theme.lightColours
     }
 }

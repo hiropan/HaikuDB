@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("colourScheme") private var colourScheme: String = "System"
+    @AppStorage("colourScheme") private var colourScheme: String = "Light"
+    @AppStorage("colourTheme") private var colourTheme: String = "Standard"
     @AppStorage("language") private var language: String = "English"
     @AppStorage("defaultWriter") private var defaultWriter: String = ""
 
@@ -27,7 +28,13 @@ struct SettingsView: View {
                             Text(option)
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                    .pickerStyle(SegmentedPickerStyle());
+                    
+                    Picker("Colour Theme", selection: $colourTheme) {
+                        ForEach(allThemes) { theme in
+                            Text(theme.name).tag(theme.name)
+                        }
+                    }
                 }
 
                 Section(header: Text("Default Writer's Name")) {
@@ -72,26 +79,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-                
-//                Section(header: Text("Themes")) {
-//                    ForEach(themes.indices, id: \.self) { index in
-//                        HStack {
-//                            TextField("Theme", text: $themes[index])
-//                            Button(action: {
-//                                themes.remove(at: index)
-//                            }) {
-//                                Image(systemName: "minus.circle")
-//                                    .foregroundColor(.red)
-//                            }
-//                        }
-//                    }
-//
-//                    Button(action: {
-//                        themes.append("")
-//                    }) {
-//                        Label("Add Theme", systemImage: "plus.circle")
-//                    }
-//                }
             }
             .navigationTitle("Settings")
             .onAppear {

@@ -87,22 +87,6 @@ let noirTheme = ColourTheme(
     )
 )
 
-let minimalTheme = ColourTheme(
-    name: "Minimal",
-    lightColours: ThemeColours(
-        background: Color(red: 0.98, green: 0.98, blue: 0.98),
-        primary: Color.black,
-        accent: Color.blue,
-        secondary: Color.gray
-    ),
-    darkColours: ThemeColours(
-        background: Color(red: 0.05, green: 0.05, blue: 0.05),
-        primary: Color.white,
-        accent: Color.blue,
-        secondary: Color.gray
-    )
-)
-
 let sakuraTheme = ColourTheme(
     name: "Sakura",
     lightColours: ThemeColours(
@@ -157,7 +141,6 @@ let allThemes: [ColourTheme] = [
     mountainTheme,
     pastelTheme,
     noirTheme,
-    minimalTheme,
     sakuraTheme,
     momijiTheme,
     matchaTheme

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct HaikuDBApp: App {
-    @AppStorage("colourScheme") private var colourScheme: String = "System"
+    @AppStorage("colourScheme") private var colourScheme: String = "Light"
 
     var body: some Scene {
         WindowGroup {
