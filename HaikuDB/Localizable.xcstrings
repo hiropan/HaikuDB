@@ -82,7 +82,14 @@
       }
     },
     "Colour Theme" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カラーテーマ"
+          }
+        }
+      }
     },
     "Contest" : {
       "localizations" : {

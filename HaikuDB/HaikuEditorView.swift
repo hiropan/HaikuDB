@@ -130,7 +130,7 @@ struct HaikuEditorView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         let updatedHaiku = Haiku(
-                            id: editingHaiku?.id ?? UUID(), // Use the same ID if editing
+                            id: editingHaiku?.id ?? UUID(),
                             upperPhrase: upperPhrase,
                             middlePhrase: middlePhrase,
                             lowerPhrase: lowerPhrase,
@@ -142,9 +142,9 @@ struct HaikuEditorView: View {
                         )
 
                         if let existingIndex = haikus.firstIndex(where: { $0.id == editingHaiku?.id }) {
-                            haikus[existingIndex] = updatedHaiku // 🔄 Update existing
+                            haikus[existingIndex] = updatedHaiku
                         } else {
-                            haikus.append(updatedHaiku) // ➕ Add new
+                            haikus.append(updatedHaiku)
                         }
 
                         saveHaikus()
